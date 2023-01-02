@@ -7,7 +7,7 @@ defmodule ElixirRelease.MixProject do
     [
       app: :elixir_release,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
