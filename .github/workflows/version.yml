@@ -35,4 +35,5 @@ jobs:
         run: |
           git add mix.exs
           git commit -m "Bump version to ${{ github.event.inputs.version }}"
-          git push
+          git tag -a ${{ github.event.inputs.version }} -m "release ${{ github.event.inputs.version }}"
+          git push --follow-tags
