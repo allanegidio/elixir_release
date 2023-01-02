@@ -1,0 +1,17 @@
+name: New Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: New Version
+        required: true
+
+jobs:
+  greet:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Send greeting
+        run: echo "${{ github.event.inputs.version }}"
