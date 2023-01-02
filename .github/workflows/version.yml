@@ -30,3 +30,8 @@ jobs:
 
       - name: Bump Version
         run: mix bump_version ${{ github.event.inputs.version }}
+
+      - name: Git Push
+        run: |
+          git add mix.exs
+          git push
