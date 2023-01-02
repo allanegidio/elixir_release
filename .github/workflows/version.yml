@@ -34,4 +34,5 @@ jobs:
       - name: Git Push
         run: |
           git add mix.exs
+          git commit -m "Bump version to ${{ github.event.inputs.version }}"
           git push
