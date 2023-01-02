@@ -9,9 +9,24 @@ on:
         required: true
 
 jobs:
-  greet:
+  bump_version:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Send greeting
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          mix-env: dev
+
+      - name: Git config
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Print Version
         run: echo "${{ github.event.inputs.version }}"
+
+      - name: Bump Version
+        run: mix bump_version ${{ github.event.inputs.version }}

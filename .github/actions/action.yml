@@ -1,0 +1,21 @@
+name: "Setup"
+description: "Setup"
+inputs:
+  mix-env:
+    description: "Mix env"
+    required: true
+    default: ""
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        elixir-version: "1.13.1"
+        otp-version: "24.2"
+
+    - name: build
+      run: |
+        mix deps.get --only ${{ inputs.mix-env }}
+        mix compile --warnings-as-errors
+      shell: bash
