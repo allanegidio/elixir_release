@@ -4,6 +4,7 @@ defmodule ElixirRelease.MixProject do
   @version "23.8.0"
   
   # hello
+  # no labels
 
   def project do
     [
