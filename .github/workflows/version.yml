@@ -37,3 +37,15 @@ jobs:
           git commit -m "Bump version to ${{ github.event.inputs.version }}"
           git tag -a ${{ github.event.inputs.version }} -m "release ${{ github.event.inputs.version }}"
           git push --follow-tags
+
+  deploy-hom:
+    needs: bump_version
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: hom
+
+  deploy-prod:
+    needs: deploy-hom
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: prod
