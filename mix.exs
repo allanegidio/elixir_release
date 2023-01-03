@@ -1,7 +1,7 @@
 defmodule ElixirRelease.MixProject do
   use Mix.Project
 
-  @version "23.8.0"
+  @version "23.12.0"
   
   # hello
   # no labels
