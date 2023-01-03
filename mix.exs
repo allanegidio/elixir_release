@@ -1,7 +1,7 @@
 defmodule ElixirRelease.MixProject do
   use Mix.Project
 
-  @version "23.5.0"
+  @version "23.0.0"
 
   def project do
     [
