@@ -32,7 +32,7 @@ jobs:
           git push --follow-tags
 
   deploy-hom:
-    needs: bump_version
+    needs: push_tag
     uses: ./.github/workflows/deploy.yml
     with:
       environment: hom
