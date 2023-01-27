@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  bump_version:
+  push_tag:
     runs-on: ubuntu-20.04
 
     steps:
@@ -18,21 +18,13 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.TAG_PUSH_TOKEN }}
 
-      # - name: Setup
-      #   uses: ./.github/actions/setup
-      #   with:
-      #     mix-env: dev
-
-      # - name: Git config
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
+      - name: Git config
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
       - name: Print Version
         run: echo "${{ github.event.inputs.version }}"
-
-      # - name: Bump Version
-      #   run: mix bump_version ${{ github.event.inputs.version }}
 
       - name: Git Push
         run: |
