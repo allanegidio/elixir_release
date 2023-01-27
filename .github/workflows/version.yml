@@ -23,12 +23,20 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Print Version
-        run: echo "${{ github.event.inputs.version }}"
+      - name: Calver Release
+        uses: StephaneBour/actions-calver@master
+        id: calver
+        with:
+          date_format: "%Y-%m-%d"
+          release: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Git Push
+        env:
+          VERSION: ${{ steps.calver.outputs.release }}
         run: |
-          git tag -a ${{ github.event.inputs.version }} -m "release ${{ github.event.inputs.version }}"
+          git tag -a ${VERSION} -m "release ${VERSION}"
           git push --follow-tags
 
   deploy-hom:
